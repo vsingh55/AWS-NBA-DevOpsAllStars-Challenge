@@ -104,7 +104,7 @@ def main():
     if not bucket_exists(client, bucket_name):
         create_bucket(client, bucket_name)
 
-    # Step 3: Fetch and process weather data
+    # Step 3: Fetch, process and save weather data
     cities = ["London", "New York", "Amsterdam", "Delhi", "Oslo"]
     for city in cities:
         print(f"\nProcessing weather data for {city}...")

@@ -1,113 +1,130 @@
-# Weather-Dashboard
+# Weather Data Collection and Storage
 
-## 📜 Description
-This project fetches weather data from the OpenWeather API for specified cities, processes the data, and stores it in an AWS S3 bucket. The stored data can be used for creating dashboards using tools like AWS QuickSight.
+## Table of Contents
+- [Weather Data Collection and Storage](#weather-data-collection-and-storage)
+  - [Table of Contents](#table-of-contents)
+  - [Project Overview](#project-overview)
+    - [Objective](#objective)
+    - [Features](#features)
+  - [Architecture](#architecture)
+    - [System Design](#system-design)
+    - [Workflow](#workflow)
+  - [Technologies Used](#technologies-used)
+  - [Project Structure](#project-structure)
+  - [Prerequisites](#prerequisites)
+    - [System Requirements](#system-requirements)
+    - [Required Credentials](#required-credentials)
+  - [How to Setup](#how-to-setup)
+    - [Step 1: Clone the Repository](#step-1-clone-the-repository)
+    - [Step 2: Install Dependencies](#step-2-install-dependencies)
+    - [Step 3: Set Up Environment Variables](#step-3-set-up-environment-variables)
+  - [Configuration](#configuration)
+  - [Execution](#execution)
+    - [Expected Output](#expected-output)
+    - [Screenshots](#screenshots)
+  - [Future Development](#future-development)
+  - [Contributing](#contributing)
+  - [License](#license)
 
-## 🛠 Features
+## Project Overview
+
+### Objective
+The purpose of this project is to fetch weather data for selected cities using the OpenWeather API and store the data in an AWS S3 bucket for further analysis or integration with downstream systems.
+
+### Features
 - Fetch real-time weather data for multiple cities.
-- Extract specific weather metrics (e.g., temperature, humidity, description).
-- Save data locally in JSON format.
-- Upload weather data to an S3 bucket.
-- Includes error handling for API requests and AWS operations.
+- Extract relevant data fields such as city name, temperature, and humidity.
+- Save the weather data locally in JSON format.
+- Upload the saved data to an AWS S3 bucket.
 
----
+## Architecture
+![architechturedia](image.png)
+### System Design
+1. **Data Source**: OpenWeather API for weather information.
+2. **Processing Script**: Python script for data fetching, processing, and uploading.
+3. **Storage**: AWS S3 bucket for centralized data storage.
 
-## 🚀 Prerequisites
+### Workflow
+1. The Python script fetches data from OpenWeather API.
+2. Relevant data fields are extracted and saved locally as JSON files.
+3. The JSON files are uploaded to an AWS S3 bucket.
 
-1. **API Key**: Obtain an API key from [OpenWeather API](https://openweathermap.org/).
-2. **AWS Credentials**:
-   - Configure AWS credentials using the AWS CLI:
-     ```bash
-     aws configure
-     ```
-   - Ensure the IAM role/user has access to S3.
-3. **Environment Variables**:
-   Create a `.env` file in the project root with the following keys:
-   ```env
-   API_KEY=<your_openweather_api_key>
-   S3_BUCKET_NAME=<your_s3_bucket_name>
-   ```
+## Technologies Used
+| Category        | Technologies              |
+|-----------------|---------------------------|
+| Programming     | Python                    |
+| Cloud Storage   | AWS S3                    |
+| Environment Mgmt| Python dotenv             |
+| API Integration | OpenWeather API           |
 
-4. **Python Requirements**:
-   - Python 3.8+
-   - Install dependencies:
-     ```bash
-     pip install -r requirements.txt
-     ```
-
----
-
-## 📂 File Structure
-```plaintext
-├── weather_dashboard.py               # Main script for fetching and uploading data
-├── .env                  # Environment variables
+## Project Structure
+```
+Weather Dashboard/
+├──src
+   └── weather_dashboard.py     # Main script to fetch, process and save data
+├── weather_data/         # Directory for locally saved weather data
 ├── requirements.txt      # Python dependencies
-├── README.md             # Project documentation
-└── weather-data/         # Directory for locally saved weather data
+└──README.md             # Project documentation
 ```
 
----
+## Prerequisites
 
-## ⚙️ Setup
+### System Requirements
+- Python 3.8 or above
+- AWS account with appropriate permissions for S3 operations
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/vsingh55/AWS-NBA-DevOpsAllStars-Challenge-2025.git
-   cd AWS-NBA-DevOpsAllStars-Challenge-2025/D1-Weather-Dashboard
-   ```
+### Required Credentials
+- [OpenWeather API Key](https://openweathermap.org/api)
+- AWS Access Key ID and Secret Access Key
 
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+## How to Setup
 
-3. Set up environment variables in the `.env` file.
+### Step 1: Clone the Repository
+```bash
+git clone https://github.com/vsingh55/AWS-NBA-DevOpsAllStars-Challenge-2025.git
+cd AWS-NBA-DevOpsAllStars-Challenge-2025/D1-Weather-Dashboard
+```
 
-4. Run the script:
-   ```bash
-   python3 weather_dashboard.py
-   ```
+### Step 2: Install Dependencies
+```bash
+pip install -r requirements.txt
+```
 
----
+### Step 3: Set Up Environment Variables
+Create a `.env` file in the root directory with the following content:
+```env
+S3_BUCKET_NAME=your-s3-bucket-name
+API_KEY=your-openweather-api-key
+```
 
-## 🌐 Usage
+## Configuration
+- Replace `your-s3-bucket-name` with the name of the S3 bucket.
+- Add your OpenWeather API Key to `API_KEY`.
+- Configure AWS credentials using the AWS CLI:
+  ``` aws configure ```
 
-1. **Run the Script**
-   - The script will:
-     1. Check if the specified S3 bucket exists.
-     2. Create the bucket if it doesn’t exist.
-     3. Fetch weather data from the OpenWeather API.
-     4. Save the data locally in the `weather-data/` directory.
-     5. Upload the data to the S3 bucket.
+## Execution
+Run the main script to fetch and upload data:
+```bash
+python weather_dashboard.py
+```
 
-2. **Sample Output**
-   - Local file: `weather-data/London_weather.json`
-   - S3 object: `s3://<bucket-name>/weather-data/London_weather.json`
+### Expected Output
+1. Local JSON files saved in the `weather_data/` directory.
+2. Weather data uploaded to the S3 bucket under the `weather_data/` folder.
 
----
+### Screenshots
+![alt text](<2025-01-16 16.48.42 ap-south-1.console.aws.amazon.com afa6d41e274c.png>)
 
-## 🖥 Dashboard Creation
+## Future Development
+1. Build a dashboard using AWS QuickSight or Grafana for data visualization.
+2. Automate the script execution with a scheduler such as AWS Lambda or cron jobs.
+3. Add additional error handling and logging mechanisms.
+4. Implement CI/CD pipelines for streamlined deployment and testing.
 
-1. Use AWS QuickSight to create a dashboard from the S3 data.
-2. Connect the S3 bucket to QuickSight as a data source.
-3. Create visuals (e.g., bar charts, tables) for metrics like temperature, humidity, etc.
+## Contributing
+- Contributions are welcome. Please open an issue or submit a pull request for suggestions or improvements.
 
----
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-## 🐛 Error Handling
-- Ensures bucket existence before uploading.
-- Handles HTTP errors during API calls (e.g., 401 Unauthorized).
-- Provides fallback for AWS operations.
-
----
-
-## 📋 License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-## 🫱🏻‍🫲🏼 Let's Connect
-For any inquiries or suggestions, please contact:
-- **Vijay Kumar Singh**
-- [Email](mailto:vijay@example.com)
-- [GitHub Profile](https://github.com/username)
