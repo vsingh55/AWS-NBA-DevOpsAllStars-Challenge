@@ -38,7 +38,7 @@ The purpose of this project is to fetch weather data for selected cities using t
 - Upload the saved data to an AWS S3 bucket.
 
 ## Architecture
-![architechturedia](../Assests/1.architechture.png)
+![architechturedia](/Assests/D1-Weather%20Dashboard/1.architechture.png)
 ### System Design
 1. **Data Source**: OpenWeather API for weather information.
 2. **Processing Script**: Python script for data fetching, processing, and uploading.
@@ -114,7 +114,7 @@ python weather_dashboard.py
 2. Weather data uploaded to the S3 bucket under the `weather_data/` folder.
 
 ### Screenshots
-![alt text](../Assests/1.uploadedDataS3.png)
+![alt text](/Assests/D1-Weather%20Dashboard/1.uploadedDataS3.png)
 
 ## Future Development
 1. Build a dashboard using AWS QuickSight or Grafana for data visualization.
