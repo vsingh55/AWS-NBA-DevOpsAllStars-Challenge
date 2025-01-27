@@ -23,6 +23,7 @@
     - [Expected Output](#expected-output)
     - [Screenshots](#screenshots)
   - [Future Development](#future-development)
+  - [Blog🔗](#blog)
   - [Contributing](#contributing)
   - [License](#license)
 
@@ -121,6 +122,10 @@ python weather_dashboard.py
 2. Automate the script execution with a scheduler such as AWS Lambda or cron jobs.
 3. Add additional error handling and logging mechanisms.
 4. Implement CI/CD pipelines for streamlined deployment and testing.
+
+## Blog🔗
+[To visit blog click here](https://blogs.vijaysingh.cloud/weather-dashboard)
+
 
 ## Contributing
 - Contributions are welcome. Please open an issue or submit a pull request for suggestions or improvements.
