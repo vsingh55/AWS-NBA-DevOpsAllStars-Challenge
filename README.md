@@ -19,7 +19,7 @@ Welcome to my repository for the **AWS-NBA-DevOpsAllStars-Challenge**, hosted by
 - **API Integration**: Gained experience in fetching and processing data from the OpenWeather using Python API.
 - **AWS S3**: Learned to store and manage data in AWS S3 buckets through python script.
 
-### NBA Game Day Notification Alert
+### [NBA Game Day Notification Alert](Assests/D2-GameDayNotification/architecture.png)
 - **Event-Driven Architecture**: Designed workflows using AWS EventBridge to trigger AWS Lambda functions.
 - **Notification Services**: Implemented AWS SNS to send real-time notifications via email/SMS.
 <!-- - **Containerization (Docker)**: Utilized Docker to containerize applications, enhancing portability and consistency across environments. -->
