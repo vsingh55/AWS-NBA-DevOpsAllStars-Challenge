@@ -40,12 +40,15 @@ The purpose of this project is to fetch weather data for selected cities using t
 
 ## Architecture
 ![architechturedia](/Assests/D1-Weather%20Dashboard/1.architechture.png)
+
 ### System Design
+
 1. **Data Source**: OpenWeather API for weather information.
 2. **Processing Script**: Python script for data fetching, processing, and uploading.
 3. **Storage**: AWS S3 bucket for centralized data storage.
 
 ### Workflow
+
 1. The Python script fetches data from OpenWeather API.
 2. Relevant data fields are extracted and saved locally as JSON files.
 3. The JSON files are uploaded to an AWS S3 bucket.
@@ -59,6 +62,7 @@ The purpose of this project is to fetch weather data for selected cities using t
 | API Integration | OpenWeather API           |
 
 ## Project Structure
+
 ```
 Weather Dashboard/
 ├──src
