@@ -49,7 +49,7 @@ The goal of this project is to create a notification system that leverages AWS s
 1. SNS publishes the notification to subscribers.
 2. Lambda function written in Pyrhon processes the events, fetch & formats the data.
 3. EventBridge triggers Lambda function according to cron-job.
-![ProjectFlow](/Assests/D2-GameDayNotification/D2-CC-GDN.png.png)
+![ProjectFlow](/Assests/D2-GameDayNotification/D2-CC-GDN.png)
 
 
 ## Technologies Used
