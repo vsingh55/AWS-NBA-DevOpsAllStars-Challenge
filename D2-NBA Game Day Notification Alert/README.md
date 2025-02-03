@@ -12,12 +12,11 @@
   - [Technologies Used](#technologies-used)
   - [Project Structure](#project-structure)
   - [Prerequisites](#prerequisites)
-    - [System Requirements](#system-requirements)
   - [How to Setup](#how-to-setup)
-    - [Step 1: Set Up AWS Lambda](#step-1-set-up-aws-lambda)
-    - [Step 2: Write the Lambda Function Code](#step-2-write-the-lambda-function-code)
-    - [Step 3: Set Up Amazon SNS](#step-3-set-up-amazon-sns)
-    - [Step 4: Subscribe to the SNS Topic](#step-4-subscribe-to-the-sns-topic)
+    - [Step 1: Set Up Amazon SNS](#step-1-set-up-amazon-sns)
+    - [Step 2: Subscribe to the SNS Topic](#step-2-subscribe-to-the-sns-topic)
+    - [Step 3: Set Up AWS Lambda](#step-3-set-up-aws-lambda)
+    - [Step 4: Write the Lambda Function Code](#step-4-write-the-lambda-function-code)
     - [Step 5: Configure Amazon EventBridge](#step-5-configure-amazon-eventbridge)
   - [Expected Output](#expected-output)
   - [Future Development](#future-development)
@@ -47,9 +46,10 @@ The goal of this project is to create a notification system that leverages AWS s
 
 ### Workflow
 
-1. EventBridge triggers Lambda function according to cron-job.
-2. Lambda function processes the events, fetch & formats the data.
-3. SNS publishes the notification to subscribers.
+1. SNS publishes the notification to subscribers.
+2. Lambda function written in Pyrhon processes the events, fetch & formats the data.
+3. EventBridge triggers Lambda function according to cron-job.
+![ProjectFlow](/Assests/D2-GameDayNotification/D2-CC-GDN.png.png)
 
 
 ## Technologies Used
@@ -72,37 +72,47 @@ NBA Game Day Notification Alert/
 
 ## Prerequisites
 
-### System Requirements
 - AWS account with permissions for Lambda, SNS, and EventBridge.
-- Python
+- Python 
+- [Get SportData.io API](https://sportsdata.io/cart/free-trial)
+
 ## How to Setup
 
-### Step 1: Set Up AWS Lambda
-- Navigate to AWS Lambda in the AWS Management Console.
-- Create a new Lambda function named "GameDayNotificationHandler" with Python 3.8 runtime.
-- Assign a role with basic Lambda permissions.
+### Step 1: Set Up Amazon SNS
 
-### Step 2: Write the Lambda Function Code
-- Use the provided `gdn.py` script in the `src/` directory.
-- Ensure the script imports necessary AWS SDK modules and handles event data.
-
-### Step 3: Set Up Amazon SNS
 - Create a new SNS topic named "GameDayNotifications".
 - Configure the topic settings as needed.
 
-### Step 4: Subscribe to the SNS Topic
+### Step 2: Subscribe to the SNS Topic
+
 - Add a subscription to the SNS topic using your preferred protocol (Email/SMS).
 - Confirm the subscription via the endpoint.
+  ![screenshot](/Assests/D2-GameDayNotification/gdn_sns.png)
+
+### Step 3: Set Up AWS Lambda
+
+- Navigate to AWS Lambda in the AWS Management Console.
+- Create a new Lambda function named "GameDayNotificationHandler" with Python 3.8 runtime.
+- Assign a role with basic Lambda permissions.
+ ![policy](/Assests/D2-GameDayNotification/policies.png)
+ ![roles](/Assests/D2-GameDayNotification/roles.png)
+
+
+### Step 4: Write the Lambda Function Code
+
+- Use the provided `gdn.py` script in the `src/` directory.
+- Ensure the script imports necessary AWS SDK modules and handles event data.
+  ![lambda](/Assests/D2-GameDayNotification/lambda.png)
 
 ### Step 5: Configure Amazon EventBridge
+
 - Create a new rule in EventBridge named "GameDayEventRule".
 - Define the event pattern and set the target to the Lambda function.
-- **Email Verification**: 
+  ![](/Assests/D2-GameDayNotification/gdn_eventbridge.png)
+- **Email Verification**:
   - Check your email inbox for a subscription confirmation message from Amazon SNS.
   - Confirm the subscription by clicking on the provided link.
 
-
-![flowchart](/Assests/D2-GameDayNotification/Pasted%20Image%2020250201223604_724.png)
 
 ## Expected Output
 
@@ -129,3 +139,6 @@ NBA Game Day Notification Alert/
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
+
+
+[def]: /Assests/D2-GameDayNotification/policies.png/
