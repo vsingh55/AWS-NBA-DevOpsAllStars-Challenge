@@ -1,9 +1,9 @@
 # NBA Analytics Data Lake  
 
-## Table of Contents  
+<details>
+<summary>📑 Quick Navigation</summary>
+
 - [NBA Analytics Data Lake](#nba-analytics-data-lake)
-  - [Table of Contents](#table-of-contents)
-  - [Project Overview](#project-overview)
     - [Objective](#objective)
     - [Features](#features)
   - [Architecture](#architecture)
@@ -13,21 +13,21 @@
   - [Project Structure](#project-structure)
   - [Prerequisites](#prerequisites)
   - [How to Setup](#how-to-setup)
+  - [Create IAM Policy](#create-iam-policy)
     - [Launch CloudShell](#launch-cloudshell)
-    - [Create Script File](#create-script-file)
     - [Configure Environment](#configure-environment)
+    - [Create Script File](#create-script-file)
   - [Deployment](#deployment)
   - [Query Demo](#query-demo)
   - [Validation](#validation)
   - [Security Considerations](#security-considerations)
   - [Troubleshooting](#troubleshooting)
   - [Future Enhancements](#future-enhancements)
+  - [Blog🔗](#blog)
   - [Contributing](#contributing)
   - [License](#license)
+</details>
 
-
-
-## Project Overview  
 
 ### Objective
 
@@ -47,9 +47,7 @@ Build an **automated NBA analytics pipeline** that:
 
 
 ## Architecture  
-![architecture]()  
-
-Here’s the reformatted section tailored for the **NBA Analytics Data Lake** project:
+![architecture](/Assests/D3-Sports%20Analytics%20Data%20Lake/aws-nba-dat-lake.png)  
 
 ### System Design  
 
@@ -101,23 +99,27 @@ nba-analytics-data-lake/
 
 ## How to Setup
 
+## Create IAM Policy
+1. Log in to AWS Management Console
+
+2. Navigate to IAM: 
+- In the search bar, type IAM and select IAM from the results.
+
+3. Create a New Policy:
+- In the IAM dashboard, click on Policies in the left-hand menu.
+- Click the Create policy button.
+- Switch to JSON Editor:
+- In the Create Policy page, select the JSON tab.
+- Copy the [provided JSON policy](/D3-Sports%20Analytics%20Data%20Lake/policies/IAM%20Roles) and paste it into the editor.
+- [](/Assests/D3-Sports%20Analytics%20Data%20Lake/iam.png)
+
 ###  Launch CloudShell  
 1. Sign into AWS Console → Click `>_` (CloudShell icon)  
-2. Wait for terminal initialization (≈30 sec)  
-
-### Create Script File  
-```bash
-vim setup_nba_data_lake.py
-```
-1. Press `i` to enter insert mode  
-2. Paste [script content](/D3-Sports%20Analytics%20Data%20Lake/src/setup_nba_data_lake.py)  
-3. Replace `"YOUR_API_KEY"` with SportsDataIO key  
-4. Save: `Esc → :wq → Enter`  
 
 ### Configure Environment  
 
 ```bash
-vim .env
+nano .env
 ``` 
 1. Press `i` to insert  
 2. Paste:  
@@ -125,7 +127,15 @@ vim .env
 SPORTS_DATA_API_KEY=your_actual_key_here
 NBA_ENDPOINT=https://api.sportsdata.io/v3/nba/scores/json/Players
 ```
-3. Save: `Esc → :wq → Enter`  
+3. Save & exit.  
+
+### Create Script File  
+```bash
+nano setup_nba_data_lake.py
+```
+1. Press `i` to enter insert mode  
+2. Paste [script content](/D3-Sports%20Analytics%20Data%20Lake/src/setup_nba_data_lake.py)   
+3. Save & exit.  
 
 
 ## Deployment  
@@ -154,9 +164,12 @@ LIMIT 10;
 
 ## Validation  
 1. **Verify S3 Data**:  
-   - Navigate to S3 → Check `raw-data/nba_player_data.json`  
+   - Navigate to S3 → Check `raw-data/nba_player_data.json` 
+   - [](/Assests/D3-Sports%20Analytics%20Data%20Lake/bucket.png)
+   - [](/Assests/D3-Sports%20Analytics%20Data%20Lake/bucket2.png) 
 2. **Check Glue Catalog**:  
    - AWS Glue → Tables → `nba_players` schema  
+   - [](/Assests/D3-Sports%20Analytics%20Data%20Lake/glue_table.png)
 
 
 ## Security Considerations  
@@ -178,11 +191,14 @@ LIMIT 10;
 2. Data transformation to Parquet format  
 3. Cost monitoring dashboard  
 
+## Blog🔗
+[To visit blog click here](https://blogs.vijaysingh.cloud/data-lake)
+
 ## Contributing  
 1. Fork the repository  
-2. Submit PRs to `dev` branch  
+2. Submit PRs to `new` branch  
 3. Include test evidence  
 
 
 ## License  
-MIT License - [Full Text](LICENSE)  
+MIT License - [Full Text](/LICENSE)  
