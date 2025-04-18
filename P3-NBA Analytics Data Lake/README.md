@@ -4,6 +4,7 @@
 <summary>📑 Quick Navigation</summary>
 
 - [NBA Analytics Data Lake](#nba-analytics-data-lake)
+  - [Project Overview](#project-overview)
     - [Objective](#objective)
     - [Features](#features)
   - [Architecture](#architecture)
@@ -13,11 +14,13 @@
   - [Project Structure](#project-structure)
   - [Prerequisites](#prerequisites)
   - [How to Setup](#how-to-setup)
-  - [Create IAM Policy](#create-iam-policy)
+    - [Create IAM Policy](#create-iam-policy)
     - [Launch CloudShell](#launch-cloudshell)
     - [Configure Environment](#configure-environment)
     - [Create Script File](#create-script-file)
   - [Deployment](#deployment)
+    - [Install Dependencies](#install-dependencies)
+    - [Run Script](#run-script)
   - [Query Demo](#query-demo)
   - [Validation](#validation)
   - [Security Considerations](#security-considerations)
@@ -28,7 +31,7 @@
   - [License](#license)
 </details>
 
-
+## Project Overview
 ### Objective
 
 Build an **automated NBA analytics pipeline** that: 
@@ -99,7 +102,7 @@ nba-analytics-data-lake/
 
 ## How to Setup
 
-## Create IAM Policy
+### Create IAM Policy
 1. Log in to AWS Management Console
 
 2. Navigate to IAM: 
@@ -139,13 +142,19 @@ nano setup_nba_data_lake.py
 3. Save & exit.  
 
 
-## Deployment  
+## Deployment 
+
+### Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+### Run Script 
 ```bash
 python3 setup_nba_data_lake.py
 ```
 **Successful Output**:  
 ```text
-S3 Bucket Created: s3://nba-datalake-1234  
+S3 Bucket Created: s3://<bucket_name>  
 Glue Database 'nba_analytics' Ready  
 Athena Query Interface Activated!  
 ```
@@ -154,14 +163,16 @@ Athena Query Interface Activated!
 ## Query Demo  
 Run in **Athena Query Editor**:  
 ```sql
--- Top 10 Players by Points/Gm
-SELECT first_name, last_name, team, points_per_game 
-FROM nba_players 
-ORDER BY points_per_game DESC 
-LIMIT 10;
+-- Total points per team
+SELECT Team, SUM(points) AS TotalTeamPoints 
+FROM "glue-nba-data-lake"."nba_players" 
+GROUP BY TEAM
+ORDER BY TotalTeamPoints DESC 
+LIMIT 5
 ```
 ![Athena Results](/Assests/P3-Sports%20Analytics%20Data%20Lake/athena-query-result.png)  
 
+Run more queries & know about players or team.
 
 ## Validation  
 1. **Verify S3 Data**:  

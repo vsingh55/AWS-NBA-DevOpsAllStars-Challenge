@@ -1,8 +1,9 @@
 # Weather Data Collection and Storage
 
-## Table of Contents
+<details>
+<summary>📑 Quick Navigation</summary>
+
 - [Weather Data Collection and Storage](#weather-data-collection-and-storage)
-  - [Table of Contents](#table-of-contents)
   - [Project Overview](#project-overview)
     - [Objective](#objective)
     - [Features](#features)
@@ -27,6 +28,8 @@
   - [Contributing](#contributing)
   - [License](#license)
 
+</details>
+
 ## Project Overview
 
 ### Objective
@@ -39,7 +42,7 @@ The purpose of this project is to fetch weather data for selected cities using t
 - Upload the saved data to an AWS S3 bucket.
 
 ## Architecture
-![architechturedia](/Assests/D1-Weather%20Dashboard/1.architechture.png)
+![architechturedia](/Assests/P1-Weather%20Dashboard/architechture.png)
 
 ### System Design
 
@@ -119,7 +122,7 @@ python weather_dashboard.py
 2. Weather data uploaded to the S3 bucket under the `weather_data/` folder.
 
 ### Screenshots
-![alt text](/Assests/D1-Weather%20Dashboard/1.uploadedDataS3.png)
+![alt text](/Assests/P1-Weather%20Dashboard/uploadedDataS3.png)
 
 ## Future Development
 1. Build a dashboard using AWS QuickSight or Grafana for data visualization.
