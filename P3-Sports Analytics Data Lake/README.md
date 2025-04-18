@@ -47,7 +47,7 @@ Build an **automated NBA analytics pipeline** that:
 
 
 ## Architecture  
-![architecture](/Assests/D3-Sports%20Analytics%20Data%20Lake/aws-nba-dat-lake.png)  
+![architecture](/Assests/P3-Sports%20Analytics%20Data%20Lake/aws-nba-dat-lake.png)  
 
 ### System Design  
 
@@ -64,7 +64,7 @@ Build an **automated NBA analytics pipeline** that:
 2. Raw JSON is uploaded to an S3 bucket (`s3://<bucket>/raw-data/`).  
 3. AWS Glue crawler auto-discovers schema and creates metadata tables.  
 4. Analysts run SQL queries directly on S3 data via Athena.  
-
+ ![workflow](/Assests/P3-Sports%20Analytics%20Data%20Lake/workflow.png)
 
 ## Technologies Used  
 | Category         | Technologies              |  
@@ -110,11 +110,12 @@ nba-analytics-data-lake/
 - Click the Create policy button.
 - Switch to JSON Editor:
 - In the Create Policy page, select the JSON tab.
-- Copy the [provided JSON policy](/D3-Sports%20Analytics%20Data%20Lake/policies/IAM%20Roles) and paste it into the editor.
-- [](/Assests/D3-Sports%20Analytics%20Data%20Lake/iam.png)
+- Copy the [provided JSON policy](/P3-Sports%20Analytics%20Data%20Lake/policies/IAM%20Roles) and paste it into the editor.
+ ![](/Assests/P3-Sports%20Analytics%20Data%20Lake/iam.png)
 
 ###  Launch CloudShell  
 1. Sign into AWS Console → Click `>_` (CloudShell icon)  
+ ![](/Assests/P3-Sports%20Analytics%20Data%20Lake/cloudshell.png)
 
 ### Configure Environment  
 
@@ -134,7 +135,7 @@ NBA_ENDPOINT=https://api.sportsdata.io/v3/nba/scores/json/Players
 nano setup_nba_data_lake.py
 ```
 1. Press `i` to enter insert mode  
-2. Paste [script content](/D3-Sports%20Analytics%20Data%20Lake/src/setup_nba_data_lake.py)   
+2. Paste [script content](/P3-Sports%20Analytics%20Data%20Lake/src/setup_nba_data_lake.py)   
 3. Save & exit.  
 
 
@@ -159,17 +160,17 @@ FROM nba_players
 ORDER BY points_per_game DESC 
 LIMIT 10;
 ```
-![Athena Results](https://via.placeholder.com/600x300.png?text=Top+10+Players+Query+Results)  
+![Athena Results](/Assests/P3-Sports%20Analytics%20Data%20Lake/athena-query-result.png)  
 
 
 ## Validation  
 1. **Verify S3 Data**:  
    - Navigate to S3 → Check `raw-data/nba_player_data.json` 
-   - [](/Assests/D3-Sports%20Analytics%20Data%20Lake/bucket.png)
-   - [](/Assests/D3-Sports%20Analytics%20Data%20Lake/bucket2.png) 
+    ![](/Assests/P3-Sports%20Analytics%20Data%20Lake/bucket.png)
+    ![](/Assests/P3-Sports%20Analytics%20Data%20Lake/bucket2.png) 
 2. **Check Glue Catalog**:  
    - AWS Glue → Tables → `nba_players` schema  
-   - [](/Assests/D3-Sports%20Analytics%20Data%20Lake/glue_table.png)
+    ![](/Assests/P3-Sports%20Analytics%20Data%20Lake/glue_table.png)
 
 
 ## Security Considerations  
@@ -197,7 +198,7 @@ LIMIT 10;
 ## Contributing  
 1. Fork the repository  
 2. Submit PRs to `new` branch  
-3. Include test evidence  
+ 
 
 
 ## License  
